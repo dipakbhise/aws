@@ -1,0 +1,95 @@
+>> to run vps ubuntu on local machine copy link from aws instance connect
+
+
+>> To see the version of ubuntu
+lsb_release -a
+
+>> to see the installed packages on ubuntu
+apt list --installed
+
+>> To update packages on ubunut
+sudo apt update
+
+>> to install node js =======
+sudo apt install nodejs
+
+>> to see version of node
+node -v
+
+>> to install npm =========
+sudo apt install npm
+
+>> to see version of npm
+npm -v
+
+>>To install mongodb community edition on ubuntu =======
+1. wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+
+2. echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+
+3. sudo apt update
+
+4. sudo apt install -y mongodb-org
+
+5. sudo systemctl start mongod
+
+
+>> to see mongodb is started or not
+sudo systemctl status mongod
+
+
+>> to enter in monog
+mongo
+
+>> to see dbs in unbuntu
+show dbs
+
+>> to enable authentication of monogdb for security
+1.mongo --port 27017 
+
+.. open another cmd
+
+1. to run vps ubuntu on local machine copy link from aws instance connect
+ssh -i "learning.pem" ubuntu@ec2-13-233-20-77.ap-south-1.compute.amazonaws.com
+
+2. mongo --port 27017 
+
+3. use admin
+
+4. db.createUser(
+  {
+    user: "admin",
+    pwd: passwordPrompt(), // or cleartext password
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
+  }
+)
+
+5. password:
+
+>> sudo vim /etc/mongod.conf
+
+>> security:
+    authorization: enabled
+
+>> esc :wq
+
+>> sudo systemctl restart mongod
+
+>> mongo --port 27017  --authenticationDatabase "admin" -u "myUserAdmin" -p
+
+
+>> To install nginx web sever ======
+-- powerfull web server
+-- used for load balancing
+-- very usefull for reverse proxy, micro services
+-- http - port - 80 - unsecure
+-- https - port - 443 - secure (ssl)
+== node is internally run on given port no. to serve this node app on port no. 80 or port no. 443 we need an nginx.
+
+>> sudo apt install nginx
+
+>> sudo ufw status
+
+>> hostname -I
+
+

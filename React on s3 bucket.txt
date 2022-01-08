@@ -1,0 +1,33 @@
+>> Blog Links
+== https://dev.to/karanpratapsingh/deploy-react-app-to-s3-cloudfront-1cao
+== https://medium.com/serverlessguru/deploy-reactjs-app-with-s3-static-hosting-f640cb49d7e6
+== https://aws.plainenglish.io/how-to-deploy-react-app-with-s3-and-cloudfront-6d170172cd58
+
+>> create aws s3 bucket
+
+>> make it public
+
+>> bucket policy json
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::YOUR_S3_BUCKET_NAME/*"
+            ]
+        }
+    ]
+}
+
+1. npm run build
+
+2. aws s3 sync build s3://bucket_name
+
+3. aws cloudfront create-invalidation --distribution-id E2FEJ1S8PFHYIT --paths '/*'

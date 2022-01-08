@@ -1,0 +1,69 @@
+Blog Links
+
+== https://www.serverless.com/blog/serverless-express-rest-api/
+
+== https://bitbucket.org/blog/deploy-an-express-js-app-to-aws-lambda-using-the-serverless-framework
+
+== https://hackernoon.com/how-to-deploy-a-node-js-application-to-aws-lambda-using-serverless-ae7e7ebe0996
+
+== https://blog.cloudboost.io/how-to-create-serverless-node-js-apps-with-aws-lambda-d5ab23be0cfb
+
+1. npm install -g serverless
+
+>> npm i serverless-http
+
+>> npm i cors
+
+>> npm i serverless-dotenv-plugin
+
+2. serverless config credentials --provider aws --key AKIAXWDJL5AARQINNDWZ --secret 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
+
+
+3. serverless create -t aws-nodejs
+
+>> index.js
+
+const serverless = require('serverless-http');
+const express = require("express")
+const app = express()
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
+
+app.get("/", (req, res)=>{
+
+    res.send("hello")
+})
+
+module.exports.handler = serverless(app);
+
+>> serverless.yml
+
+
+service: backend
+
+plugins:
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+  lambdaHashingVersion: 20201221
+
+
+functions:
+  app:
+    handler: app.handler
+    events:  
+      - http: ANY /    
+      - http: 'ANY /{proxy+}'
+
+          
+
+5. serverless deploy
+
+== Endpoints
+https://bufmarzrhk.execute-api.us-east-1.amazonaws.com/dev/studentdata
