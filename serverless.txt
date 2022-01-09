@@ -16,7 +16,7 @@ Blog Links
 
 >> npm i serverless-dotenv-plugin
 
-2. serverless config credentials --provider aws --key AKIAXWDJL5AARQINNDWZ --secret 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
+2. serverless config credentials --provider aws --key <key> --secret <secret key>
 
 
 3. serverless create -t aws-nodejs
@@ -65,5 +65,3 @@ functions:
 
 5. serverless deploy
 
-== Endpoints
-https://bufmarzrhk.execute-api.us-east-1.amazonaws.com/dev/studentdata
